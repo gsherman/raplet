@@ -1,0 +1,15 @@
+<OBJECT id=FCApp runat=server scope=Application progid='FCFLCompat.FCApplication'></OBJECT>
+
+<SCRIPT LANGUAGE="JavaScript" RUNAT=Server>
+
+function Application_OnStart()
+{
+	FCApp.WorkingDirectory = "C:\\repo\\github\\raplet";
+	FCApp.Initialize();
+	
+	var FCSession = FCApp.CreateSession();
+	FCSession.LoginFromFcApp();
+	Application.Contents('fcSessionId') = FCSession.SessionID;
+}
+
+</script>
