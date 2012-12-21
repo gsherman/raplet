@@ -2,13 +2,12 @@
 <!--#include file="json.asp"-->
 <%
 //TODO: 
-// use x_authtoken
+// remove usages of localhost
 
 //var mobileAppURL = "http://localhost/mobile";
 var mobileAppURL = "http://support.dovetailsoftware.com/mobile";
 
 var authTokenField = 'x_authtoken';
-authTokenField = 'objid';
   
 if (Request.QueryString('show') == "metadata"){
 	var result = {};

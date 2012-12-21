@@ -1,11 +1,12 @@
 <%@ language="JavaScript" %>
 <%
-//TODO: 
-// use x_authtoken
-// create token if it doesnt exist (and persist back to db)
-
 var authTokenField = 'x_authtoken';
-authTokenField = 'objid';
+
+function CreateGUID(){
+  var TypeLib = Server.CreateObject("Scriptlet.TypeLib")
+  var guid =  TypeLib.Guid;
+  return guid.substr(1,35);
+}
 
 %>
 
@@ -42,13 +43,18 @@ if (user.Count() != 1 ){
 
 var authToken = user(authTokenField) + '';
 
+if (authToken == 'null' || authToken == '' || authToken == 'undefined'){
+ var authToken = CreateGUID();
+ user(authTokenField) = authToken;
+ user.Update();
+}
+
 FCSession.Logout();
 FCSession.CloseSession();
 FCSession = null;
 
 var url = redirectURI + '#access_token=' + authToken;
 //Response.Write(url);
-
 Response.Redirect(url);
 %>
 

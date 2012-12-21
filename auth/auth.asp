@@ -12,10 +12,7 @@ if (clientId != "rapportive"){ valid=false;}
 if (responseType != "token"){ valid=false;}
 if (redirectURI.slice(0, 31) != "https://rapportive.com/raplets/"){ valid=false;}
 
-//testing: 
-var valid=true;
 %>
-
 
 <html>
 
@@ -33,13 +30,13 @@ var valid=true;
 
 <%
 if (!valid){
-Response.Write('<h1>Danger!</h1>');
-Response.Write('<p>The provided query string parameters are not what we were expecting.</p>');
-Response.Write('<p>Best to turn back and contact Dovetail support with the following information:</p>');
-Response.Write('<br/>clientId = ' + clientId);
-Response.Write('<br/>responseType = ' + responseType);
-Response.Write('<br/>redirectURI = ' + redirectURI);
-Response.End();
+	Response.Write('<h1>Warning!</h1>');
+	Response.Write('<p>The provided query string parameters are not what we were expecting.</p>');
+	Response.Write('<p>Best to turn back and contact Dovetail support with the following information:</p>');
+	Response.Write('<br/>clientId = ' + clientId);
+	Response.Write('<br/>responseType = ' + responseType);
+	Response.Write('<br/>redirectURI = ' + redirectURI);
+	Response.End();
 }
 %>
 
@@ -49,9 +46,7 @@ Response.End();
   Username: <input type="text" name="username" /><br />
   Password: <input type="password" name="password" /><br />
   <p><input type="submit" value="Login" /></p>
-  
-  <input type="hidden" name="redirectURI" value="<%=redirectURI%>"/>
-  
+  <input type="hidden" name="redirectURI" value="<%=redirectURI%>"/>  
 </form>
 
 </body>

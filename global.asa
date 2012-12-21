@@ -4,12 +4,17 @@
 
 function Application_OnStart()
 {
-	FCApp.WorkingDirectory = "C:\\repo\\github\\raplet";
-	FCApp.Initialize();
-	
-	var FCSession = FCApp.CreateSession();
-	FCSession.LoginFromFcApp();
-	Application.Contents('fcSessionId') = FCSession.SessionID;
+	Application.Contents("InitDone") = 0;
+}
+
+function Session_OnStart() {
+  if (Application.Contents('InitDone') == 0) {  
+	  FCApp.WorkingDirectory = Request.ServerVariables('APPL_PHYSICAL_PATH').Item;	
+		FCApp.Initialize();
+		var FCSession = FCApp.CreateSession();
+		FCSession.LoginFromFcApp();
+		Application.Contents('fcSessionId') = FCSession.SessionID;
+	}	
 }
 
 </script>
