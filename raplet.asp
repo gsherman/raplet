@@ -1,11 +1,11 @@
 <%@ language="JavaScript" %>
 <!--#include file="json.asp"-->
 <%
-//TODO: 
-// remove usages of localhost
 
-//var mobileAppURL = "http://localhost/mobile";
-var mobileAppURL = "http://support.dovetailsoftware.com/mobile";
+var rapletURL = "https://localhost/raplet";
+//var rapletURL = "https://support.dovetailsoftware.com/raplet";
+
+var mobileAppURL = "https://support.dovetailsoftware.com/mobile";
 
 var authTokenField = 'x_authtoken';
   
@@ -14,14 +14,14 @@ if (Request.QueryString('show') == "metadata"){
 	result.name = "Dovetail";
 	result.description = "View a contact's open cases and quickly create new cases from Rapportive.";
 	result.welcome_text = "<p><a href=\"http://www.dovetailsoftware.com\">Dovetail Software</a> is the leading provider of products and services for making Clarify rock.</p>";
-	result.icon_url = "https://localhost/raplet/logo.gif";
+	result.icon_url = rapletURL + "/logo.gif";	
 	//result.preview_url = "";
 	result.provider_name = "Dovetail Software";
 	result.provider_url = "http://dovetailsoftware.com";
 	//result.data_provider_name = "";
 	//result.data_provider_url = "";
-	result.config_url = "https://localhost/raplet/auth/auth.asp";
-		
+	result.config_url = rapletURL + "/auth/auth.asp";
+			
 	var s = JSON.stringify(result);
 	var callback = Request.QueryString("callback").Item;
 	var jsonp = callback + '(' + s + ')';
@@ -44,7 +44,7 @@ user.Query();
 if (user.Count() != 1 ){
 	var html = "";
 	html+='<div id="dovetail-raplet">';   
-	html+= "<h3 class='name'><img id='logo' src='https://localhost/raplet/logo.gif'/>Dovetail</h3>";
+	html+= "<h3 class='name'><img id='logo' src='" + rapletURL + "/logo.gif'/>Dovetail</h3>";
 	html+='<h4>Error! Invalid Token:' + authToken + '</h4>';
 	html+="<h4>Try removing and reinstalling the Dovetail raplet.</h4>";
 	
@@ -93,7 +93,8 @@ html+='<div id="dovetail-raplet">';
 
 //html+='<h4>Token:' + authToken + '</h4>';
  
-html+= "<h3 class='name'><img id='logo' src='https://localhost/raplet/logo.gif'/>Dovetail</h3>";
+html+= "<h3 class='name'><img id='logo' src='" + rapletURL + "/logo.gif'/>Dovetail</h3>";
+
 html+="<h4>" + numCases + " Open Cases for " + "<a id='contact-link' href='" + contactUrl + "'>" + firstName + "</a>" + "</h4>";
 
 var i = 1;
@@ -116,7 +117,8 @@ if (cases.Count() > 3){
 html+="<p><a target=_blank  id='newcase-anchor' href='" + mobileAppURL + "/CaseCreate/Compose?contactDatabaseIdentifier=" + contactObjid + "'><input id='newcase' type='button' value='Create a New Case' /></a></p>";
 html+="</div>";
 
-var collapsed_html =  "<div class='collapsed'><p class='name'><img id='logo' src='https://localhost/raplet/logo.gif'/>";
+var collapsed_html =  "<div class='collapsed'><p class='name'><img id='logo' src='" + rapletURL + "/logo.gif'/>";
+
 		collapsed_html+= "Dovetail - "+ "<a id='contact-link' href='" + contactUrl + "'>" + numCases + " Open Cases" +  "</a>" + "</p></div>";
 
 var css = "h3.name {}";
