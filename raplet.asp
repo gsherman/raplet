@@ -3,9 +3,7 @@
 <%
 
 var rapletURL = "https://localhost/raplet";
-//var rapletURL = "https://support.dovetailsoftware.com/raplet";
-
-var mobileAppURL = "https://support.dovetailsoftware.com/mobile";
+var mobileAppURL = "https://localhost/mobile";
 
 var authTokenField = 'x_authtoken';
   
